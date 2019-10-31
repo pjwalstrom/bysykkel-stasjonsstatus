@@ -8,15 +8,21 @@ public class Station {
     private int locksAvailable;
     private int bikesAvailable;
 
-    public Station(String id, String name, int locksAvailable, int bikesAvailable) {
+    public Station(String id, String name) {
         this.id = id;
         this.name = name;
-        this.locksAvailable = locksAvailable;
-        this.bikesAvailable = bikesAvailable;
     }
 
     public String getId() {
         return id;
+    }
+
+    public void setLocksAvailable(int locksAvailable) {
+        this.locksAvailable = locksAvailable;
+    }
+
+    public void setBikesAvailable(int bikesAvailable) {
+        this.bikesAvailable = bikesAvailable;
     }
 
     @Override
