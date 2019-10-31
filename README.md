@@ -3,7 +3,7 @@ This project queries the Oslo Bysykkel open API and prints a list of the differe
 
 Usage:
 ```
-java -jar target/bysykkel-stasjonsstatus-0.1-SNAPSHOT-jar-with-dependencies.jar 
+java -jar target/bysykkel-stasjonsstatus-1.0-jar-with-dependencies.jar 
 ```
 
 ## Development

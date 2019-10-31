@@ -1,6 +1,6 @@
 # Maven
 target/*
-!target/bysykkel-stasjonsstatus-*-jar-with-dependencies.jar
+#!target/bysykkel-stasjonsstatus-*-jar-with-dependencies.jar
 
 # Log file
 *.log
