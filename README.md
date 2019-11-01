@@ -20,6 +20,6 @@ mvn clean install
 ```
 
 ## Changelog
-### [0.1] - 2019-10-31
+### [1.0] - 2019-11-01
 - initial release
 
