@@ -1,5 +1,5 @@
 # bysykkel-stasjonsstatus
-This project queries the Oslo Bysykkel open API and prints a list of the different bikestations and the corresponding number of current available locks and bikes.
+This project queries the [Oslo Bysykkel open API](https://oslobysykkel.no/apne-data/sanntid) and prints a list of the different bikestations and the corresponding number of current available locks and bikes.
 
 Usage:
 ```
@@ -14,7 +14,7 @@ Maven version 3+
 ```
 
 ### Installing
-To build the project, use
+To run the tests and build the project, use
 ```
 mvn clean install 
 ```
