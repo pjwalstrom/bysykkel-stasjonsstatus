@@ -4,14 +4,6 @@
   "data": {
     "stations": [
       {
-        "station_id": "1101",
-        "name": "Stortingstunellen",
-        "address": "R\u00e5dhusgata 34",
-        "lat": 59.91065301806209,
-        "lon": 10.737365277561025,
-        "capacity": 24
-      },
-      {
         "station_id": "1023",
         "name": "Professor Aschehougs plass",
         "address": "Professor Aschehougs plass",
@@ -26,6 +18,14 @@
         "lat": 59.942742106473666,
         "lon": 10.703833031254021,
         "capacity": 10
+      },
+      {
+        "station_id": "1101",
+        "name": "Stortingstunellen",
+        "address": "R\u00e5dhusgata 34",
+        "lat": 59.91065301806209,
+        "lon": 10.737365277561025,
+        "capacity": 24
       },
       {
         "station_id": "970",
