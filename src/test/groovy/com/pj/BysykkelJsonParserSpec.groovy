@@ -18,48 +18,31 @@ class BysykkelJsonParserSpec extends Specification {
         filename << ['src/test/resources/empty_response.json', 'src/test/resources/empty_response_missing_stations.json', 'src/test/resources/empty_response_missing_data.json']
     }
 
-    def 'parse simple json response from bysykkel with station status'() {
+    def 'parse json response from bysykkel with station status'() {
         given:
-        String json = new File('src/test/resources/station_status.json').text
+        String stationStatusJson = new File('src/test/resources/station_status.json').text
 
         when:
-        List<Map> result = BysykkelJsonParser.parse(json)
+        Map<String, Station> stations = BysykkelJsonParser.parse(stationStatusJson)
 
         then:
-        result.size() == 246
-        result.first().station_id == '1101'
+        stations.size() == 246
+        stations.get("1101").bikesAvailable == 2
+        stations.get("1101").locksAvailable == 19
+        stations.get("1101").name.isEmpty()
     }
 
-    def 'parse simple json response from bysykkel with station information'() {
+    def 'parse json response from bysykkel with station information'() {
         given:
-        String json = new File('src/test/resources/station_information.json').text
+        String stationInfoJson = new File('src/test/resources/station_information.json').text
 
         when:
-        List<Map> result = BysykkelJsonParser.parse(json)
+        Map<String, Station> stations = BysykkelJsonParser.parse(stationInfoJson)
 
         then:
-        result.size() == 246
-        result.first().station_id == '1101'
-    }
-
-    def 'merging two empty lists results in an empty list'() {
-        expect:
-        BysykkelJsonParser.mergeJsons([], []).isEmpty()
-    }
-
-    def 'merging two parsed jsons results in a list of Station-objects'() {
-        given:
-        List<Map> stationInformation = BysykkelJsonParser.parse(new File('src/test/resources/station_information.json').text)
-        List<Map> stationStatus = BysykkelJsonParser.parse(new File('src/test/resources/station_status.json').text)
-        Station myStation = new Station("1101", "Stortingstunellen")
-        myStation.setBikesAvailable(2)
-        myStation.setLocksAvailable(19)
-
-        when:
-        Collection<Station> stations = BysykkelJsonParser.mergeJsons(stationInformation, stationStatus)
-
-        then:
-        !stations.isEmpty()
-        stations.contains(myStation)
+        stations.size() == 246
+        stations.get("1101").bikesAvailable == 0
+        stations.get("1101").locksAvailable == 0
+        stations.get("1101").name == "Stortingstunellen"
     }
 }

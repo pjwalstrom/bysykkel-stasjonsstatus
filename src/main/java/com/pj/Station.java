@@ -8,27 +8,39 @@ public class Station {
     private int locksAvailable;
     private int bikesAvailable;
 
-    public Station(String id, String name) {
+    Station(String id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public String getId() {
+    Station(String id, String name, int locksAvailable, int bikesAvailable) {
+        this.id = id;
+        this.name = name;
+        this.locksAvailable = locksAvailable;
+        this.bikesAvailable = bikesAvailable;
+    }
+
+    String getId() {
         return id;
     }
 
-    public void setLocksAvailable(int locksAvailable) {
-        this.locksAvailable = locksAvailable;
+    String getName() {
+        return name;
     }
 
-    public void setBikesAvailable(int bikesAvailable) {
-        this.bikesAvailable = bikesAvailable;
+    int getLocksAvailable() {
+        return locksAvailable;
+    }
+
+    int getBikesAvailable() {
+        return bikesAvailable;
     }
 
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("Station{");
-        sb.append("name='").append(name).append('\'');
+        sb.append("id='").append(id).append('\'');
+        sb.append(", name='").append(name).append('\'');
         sb.append(", locksAvailable=").append(locksAvailable);
         sb.append(", bikesAvailable=").append(bikesAvailable);
         sb.append('}');
