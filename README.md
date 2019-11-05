@@ -3,13 +3,13 @@ This project queries the [Oslo Bysykkel open API](https://oslobysykkel.no/apne-d
 
 Usage:
 ```
-java -jar target/bysykkel-stasjonsstatus-1.0-jar-with-dependencies.jar 
+java -jar target/bysykkel-stasjonsstatus-1.1-SNAPSHOT-jar-with-dependencies.jar 
 ```
 
 ## Development
 ### Prerequisites
 ```
-Java version 8+
+Java version 9+
 Maven version 3+
 ```
 
@@ -20,6 +20,8 @@ mvn clean install
 ```
 
 ## Changelog
+### [1.1] - 2019-11-05
+- supporting Java9+
 ### [1.0] - 2019-11-01
 - initial release
 
