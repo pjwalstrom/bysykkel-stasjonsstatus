@@ -13,11 +13,12 @@ import java.util.ResourceBundle;
 
 public class BysykkelStationStatusApp {
     private static final Logger LOG = LoggerFactory.getLogger(BysykkelStationStatusApp.class);
-    private static final String API_CLIENT_IDENTIFIER = ResourceBundle.getBundle("application").getString("bysykkel.api.client.identifier");
-    private static final String BYSYKKEL_BASE_URL = ResourceBundle.getBundle("application").getString("bysykkel.api.url.base.remote");
-    private static final String MY_BASE_URL = ResourceBundle.getBundle("application").getString("bysykkel.api.url.base.local");
-    private static final String STATION_STATUS_ENDPOINT = ResourceBundle.getBundle("application").getString("bysykkel.api.url.station.status");
-    private static final String STATION_INFO_ENDPOINT = ResourceBundle.getBundle("application").getString("bysykkel.api.url.station.info");
+    private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle("application");
+    private static final String API_CLIENT_IDENTIFIER = RESOURCE_BUNDLE.getString("bysykkel.api.client.identifier");
+    private static final String BYSYKKEL_BASE_URL = RESOURCE_BUNDLE.getString("bysykkel.api.url.base.remote");
+    private static final String MY_BASE_URL = RESOURCE_BUNDLE.getString("bysykkel.api.url.base.local");
+    private static final String STATION_STATUS_ENDPOINT = RESOURCE_BUNDLE.getString("bysykkel.api.url.station.status");
+    private static final String STATION_INFO_ENDPOINT = RESOURCE_BUNDLE.getString("bysykkel.api.url.station.info");
 
     public static void main(String[] args) throws IOException, URISyntaxException {
         LOG.info("Running BysykkelStationStatusApp");
