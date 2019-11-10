@@ -11,11 +11,11 @@ class BysykkelStationMergerSpec extends Specification {
         Station myStation = new Station("1101", "Stortingstunellen", 19, 2)
 
         when:
-        Collection<Station> stations = BysykkelStationMerger.merge(stations1, stations2)
+        Map<String, Station> stations = BysykkelStationMerger.merge(stations1, stations2)
 
         then:
         !stations.isEmpty()
-        stations.contains(myStation)
+        stations.get('1101').equals(myStation)
     }
 
     def 'merging two empty maps results in an empty map'() {
