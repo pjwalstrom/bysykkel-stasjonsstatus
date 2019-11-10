@@ -5,16 +5,17 @@ import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.util.Collection;
 
-@Path("station")
+@Path("/station")
+@Produces(MediaType.TEXT_PLAIN + ";charset=utf-8")
 public class BysykkelResource {
     private static final Logger LOG = LoggerFactory.getLogger(BysykkelResource.class);
 
     @GET
-    @Produces(MediaType.TEXT_PLAIN + ";charset=utf-8")
     public String getAll() {
         StringBuilder result = new StringBuilder();
         Collection<Station> stations = BysykkelServer.STATIONS.values();
@@ -22,5 +23,11 @@ public class BysykkelResource {
             result.append(station.toString()).append("\n");
         }
         return result.toString();
+    }
+
+    @GET
+    @Path("/{id}")
+    public String getStation(@PathParam("id") String id) {
+        return BysykkelServer.STATIONS.get(id).toString();
     }
 }
