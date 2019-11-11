@@ -37,7 +37,7 @@ public class BysykkelStationStatusApp {
         final HttpServer server = BysykkelServer.startServer(MY_BASE_URL, stations);
         LOG.info("WADL is available at {}application.wadl\nHit enter to stop server...", MY_BASE_URL);
         System.in.read();
-        server.stop();
+        server.shutdownNow();
 
         LOG.info("Have a nice day!");
     }

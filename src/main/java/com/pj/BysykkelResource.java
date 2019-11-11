@@ -1,8 +1,5 @@
 package com.pj;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -14,7 +11,7 @@ import java.util.Collection;
 @Path("/station")
 @Produces(MediaType.TEXT_PLAIN + ";charset=utf-8")
 public class BysykkelResource {
-    private static final Logger LOG = LoggerFactory.getLogger(BysykkelResource.class);
+    static final String ERROR_MSG_NO_STATION_FOUND = "No station with id ";
 
     @GET
     public Response getAll() {
@@ -30,7 +27,7 @@ public class BysykkelResource {
     @Path("/{id}")
     public Response getStation(@PathParam("id") String id) {
         if (!BysykkelServer.STATIONS.containsKey(id)) {
-            return Response.status(Response.Status.NOT_FOUND).entity("No station with id " + id).build();
+            return Response.status(Response.Status.NOT_FOUND).entity(ERROR_MSG_NO_STATION_FOUND + id).build();
         }
         return Response.status(Response.Status.OK).entity(BysykkelServer.STATIONS.get(id).toString()).build();
     }
