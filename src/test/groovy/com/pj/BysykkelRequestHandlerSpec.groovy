@@ -21,8 +21,8 @@ class BysykkelRequestHandlerSpec extends Specification {
 
     def 'sending a request to Bysykkel (using stubs) produces the correct entities'() {
         given:
-        String stationInfoResponse = new File('src/test/resources/station_information.json').text
-        httpResponseEntity.getContent() >> new ByteArrayInputStream(stationInfoResponse.getBytes())
+        byte[] stationInfoResponse = new File('src/test/resources/station_information.json').bytes
+        httpResponseEntity.getContent() >> new ByteArrayInputStream(stationInfoResponse)
         httpResponse.getEntity() >> httpResponseEntity
         httpClient.execute(_ as HttpGet) >> httpResponse
 

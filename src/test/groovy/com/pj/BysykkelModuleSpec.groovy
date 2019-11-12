@@ -13,9 +13,7 @@ import javax.ws.rs.client.WebTarget
 import javax.ws.rs.core.Response
 
 class BysykkelModuleSpec extends Specification {
-    @Shared
     HttpServer server
-    @Shared
     WebTarget target
     static final String LOCALHOST_URL = 'http://localhost:8080/foo/'
     static final String STATION_INFO_URL = 'http://stationinfo'
@@ -38,22 +36,22 @@ class BysykkelModuleSpec extends Specification {
         target = ClientBuilder.newClient().target(LOCALHOST_URL)
     }
 
-    def cleanupSpec() {
+    def cleanup() {
         server.shutdownNow()
     }
 
-    def 'happy day module test'() {
-        given:'a lot of mocking'
-        String stationInfoResponse = new File('src/test/resources/station_information.json').text
-        String stationStatusResponse = new File('src/test/resources/station_status.json').text
-        stationInfoHttpRespEntity.getContent() >> new ByteArrayInputStream(stationInfoResponse.getBytes())
+    def 'happy day'() {
+        given:'mocking of external http resources'
+        byte[] stationInfoResponse = new File('src/test/resources/station_information.json').bytes
+        byte[] stationStatusResponse = new File('src/test/resources/station_status.json').bytes
+        stationInfoHttpRespEntity.getContent() >> new ByteArrayInputStream(stationInfoResponse)
         stationInfoHttpResponse.getEntity() >> stationInfoHttpRespEntity
-        stationStatusHttpRespEntity.getContent() >> new ByteArrayInputStream(stationStatusResponse.getBytes())
+        stationStatusHttpRespEntity.getContent() >> new ByteArrayInputStream(stationStatusResponse)
         stationStatusHttpResponse.getEntity() >> stationStatusHttpRespEntity
         httpClient.execute({it.getURI().toString().contains(STATION_INFO_URL)} as HttpGet) >> stationInfoHttpResponse
         httpClient.execute({it.getURI().toString().contains(STATION_STATUS_URL)} as HttpGet) >> stationStatusHttpResponse
 
-        when:'requests are sent to Bysykkel and eventually to localhost'
+        when:'requests are sent to Bysykkel (using mocks) and eventually to localhost'
         String stationInfoJson = requestHandler.sendRequestToBysykkel(STATION_INFO_URL)
         String stationStatusJson = requestHandler.sendRequestToBysykkel(STATION_STATUS_URL)
         Map<String, Station> stationInfo = BysykkelJsonParser.parse(stationInfoJson)
