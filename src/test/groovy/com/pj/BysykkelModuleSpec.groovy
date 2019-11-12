@@ -5,7 +5,6 @@ import org.apache.http.HttpResponse
 import org.apache.http.client.HttpClient
 import org.apache.http.client.methods.HttpGet
 import org.glassfish.grizzly.http.server.HttpServer
-import spock.lang.Shared
 import spock.lang.Specification
 
 import javax.ws.rs.client.ClientBuilder
