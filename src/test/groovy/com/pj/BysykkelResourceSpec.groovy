@@ -11,18 +11,18 @@ import javax.ws.rs.core.Response
 class BysykkelResourceSpec extends Specification {
 
     @Shared
-    private HttpServer server
+    HttpServer server
     @Shared
-    private WebTarget target
-    private final static Station STATION = new Station('100', 'Mordor', 1, 0)
-    private static final String BASE_URL = 'http://localhost:8080/foo/'
+    WebTarget target
+    static final Station STATION = new Station('100', 'Mordor', 1, 0)
+    static final String BASE_URL = 'http://localhost:8080/foo/'
 
-    void setupSpec() {
-        server = BysykkelServer.startServer(BASE_URL, [(STATION.id):STATION])
+    def setupSpec() {
+        server = BysykkelServer.startServer(BASE_URL, [(STATION.id): STATION])
         target = ClientBuilder.newClient().target(BASE_URL)
     }
 
-    void cleanupSpec() {
+    def cleanupSpec() {
         server.shutdownNow()
     }
 
