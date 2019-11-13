@@ -1,11 +1,15 @@
 # bysykkel-stasjonsstatus
 This project queries the [Oslo Bysykkel open API](https://oslobysykkel.no/apne-data/sanntid) and offers a REST-API to query the different bikestations and the corresponding number of current available locks and bikes.
 
-Usage:
+Usage out-of-the-box:
+```
+java -jar target/bysykkel-stasjonsstatus-1.2-jar-with-dependencies.jar
+```
+Usage if you want to compile and run tests:
 ```
 mvn clean test exec:java
 ```
-WADL is available at http://localhost:8080/bysykkel/application.wadl
+WADL is then available at http://localhost:8080/bysykkel/application.wadl
 
 ## Development
 ### Prerequisites

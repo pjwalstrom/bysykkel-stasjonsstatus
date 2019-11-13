@@ -61,5 +61,6 @@ class BysykkelModuleSpec extends Specification {
 
         then:
         response.status == Response.Status.OK.statusCode
+        response.readEntity(String.class).contains('Tåsenløkka')
     }
 }
