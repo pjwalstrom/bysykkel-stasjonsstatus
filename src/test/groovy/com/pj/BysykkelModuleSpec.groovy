@@ -1,9 +1,9 @@
 package com.pj
 
-import org.apache.http.HttpEntity
-import org.apache.http.HttpResponse
-import org.apache.http.client.HttpClient
-import org.apache.http.client.methods.HttpGet
+import org.apache.hc.client5.http.classic.HttpClient
+import org.apache.hc.client5.http.classic.methods.HttpGet
+import org.apache.hc.core5.http.ClassicHttpResponse
+import org.apache.hc.core5.http.HttpEntity
 import org.glassfish.grizzly.http.server.HttpServer
 import spock.lang.Specification
 
@@ -20,16 +20,16 @@ class BysykkelModuleSpec extends Specification {
 
     BysykkelRequestHandler requestHandler
     HttpClient httpClient
-    HttpResponse stationInfoHttpResponse
-    HttpResponse stationStatusHttpResponse
+    ClassicHttpResponse stationInfoHttpResponse
+    ClassicHttpResponse stationStatusHttpResponse
     HttpEntity stationInfoHttpRespEntity
     HttpEntity stationStatusHttpRespEntity
 
     def setup() {
         httpClient = Stub(HttpClient)
-        stationInfoHttpResponse = Stub(HttpResponse)
+        stationInfoHttpResponse = Stub(ClassicHttpResponse)
         stationInfoHttpRespEntity = Stub(HttpEntity)
-        stationStatusHttpResponse = Stub(HttpResponse)
+        stationStatusHttpResponse = Stub(ClassicHttpResponse)
         stationStatusHttpRespEntity = Stub(HttpEntity)
         requestHandler = new BysykkelRequestHandler(httpClient, "foobar")
         target = ClientBuilder.newClient().target(LOCALHOST_URL)
@@ -47,8 +47,8 @@ class BysykkelModuleSpec extends Specification {
         stationInfoHttpResponse.getEntity() >> stationInfoHttpRespEntity
         stationStatusHttpRespEntity.getContent() >> new ByteArrayInputStream(stationStatusResponse)
         stationStatusHttpResponse.getEntity() >> stationStatusHttpRespEntity
-        httpClient.execute({it.getURI().toString().contains(STATION_INFO_URL)} as HttpGet) >> stationInfoHttpResponse
-        httpClient.execute({it.getURI().toString().contains(STATION_STATUS_URL)} as HttpGet) >> stationStatusHttpResponse
+        httpClient.execute({it.getUri().toString().contains(STATION_INFO_URL)} as HttpGet) >> stationInfoHttpResponse
+        httpClient.execute({it.getUri().toString().contains(STATION_STATUS_URL)} as HttpGet) >> stationStatusHttpResponse
 
         when:'requests are sent to Bysykkel (using mocks) and eventually to localhost'
         String stationInfoJson = requestHandler.sendRequestToBysykkel(STATION_INFO_URL)

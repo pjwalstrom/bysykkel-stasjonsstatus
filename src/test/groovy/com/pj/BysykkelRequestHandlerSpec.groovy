@@ -1,20 +1,20 @@
 package com.pj
 
-import org.apache.http.HttpEntity
-import org.apache.http.HttpResponse
-import org.apache.http.client.HttpClient
-import org.apache.http.client.methods.HttpGet
+import org.apache.hc.client5.http.classic.HttpClient
+import org.apache.hc.client5.http.classic.methods.HttpGet
+import org.apache.hc.core5.http.ClassicHttpResponse
+import org.apache.hc.core5.http.HttpEntity
 import spock.lang.Specification
 
 class BysykkelRequestHandlerSpec extends Specification {
     BysykkelRequestHandler toTest
     HttpClient httpClient
-    HttpResponse httpResponse
+    ClassicHttpResponse httpResponse
     HttpEntity httpResponseEntity
 
     def setup() {
         httpClient = Stub(HttpClient)
-        httpResponse = Stub(HttpResponse)
+        httpResponse = Stub(ClassicHttpResponse)
         httpResponseEntity = Stub(HttpEntity)
         toTest = new BysykkelRequestHandler(httpClient, "foobar")
     }

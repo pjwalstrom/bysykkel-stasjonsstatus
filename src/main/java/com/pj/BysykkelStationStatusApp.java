@@ -1,7 +1,8 @@
 package com.pj;
 
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
+import org.apache.hc.client5.http.impl.classic.HttpClients;
+import org.apache.hc.core5.http.ParseException;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +21,7 @@ public class BysykkelStationStatusApp {
     private static final String STATION_STATUS_ENDPOINT = RESOURCE_BUNDLE.getString("bysykkel.api.url.station.status");
     private static final String STATION_INFO_ENDPOINT = RESOURCE_BUNDLE.getString("bysykkel.api.url.station.info");
 
-    public static void main(String[] args) throws IOException, URISyntaxException {
+    public static void main(String[] args) throws IOException, URISyntaxException, ParseException {
         LOG.info("Running BysykkelStationStatusApp");
 
         CloseableHttpClient httpClient = HttpClients.createDefault();
