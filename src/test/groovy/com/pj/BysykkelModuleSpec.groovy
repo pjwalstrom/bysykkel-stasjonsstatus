@@ -7,9 +7,9 @@ import org.apache.http.client.methods.HttpGet
 import org.glassfish.grizzly.http.server.HttpServer
 import spock.lang.Specification
 
-import javax.ws.rs.client.ClientBuilder
-import javax.ws.rs.client.WebTarget
-import javax.ws.rs.core.Response
+import jakarta.ws.rs.client.ClientBuilder
+import jakarta.ws.rs.client.WebTarget
+import jakarta.ws.rs.core.Response
 
 class BysykkelModuleSpec extends Specification {
     HttpServer server
